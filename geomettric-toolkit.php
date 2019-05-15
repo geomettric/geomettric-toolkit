@@ -18,8 +18,16 @@ function gtk_loadPluginTextDomain()
 {
 	load_plugin_textdomain( 'geomettric-toolkit', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
+
 add_action( 'plugins_loaded', 'gtk_loadPluginTextDomain' );
 
+//#! Enqueue styles
+add_action( 'admin_enqueue_scripts', 'gtk_enqueueScripts' );
+add_action( 'wp_enqueue_scripts', 'gtk_enqueueScripts' );
+function gtk_enqueueScripts()
+{
+	wp_enqueue_style( 'gtk-plugin-styles', GTK_PLUGIN_URI . 'styles.css' );
+}
 
 //#! Load core files so others(themes|plugins) can use them
 require_once( GTK_PLUGIN_DIR . 'core/GtkUtil.php' );
