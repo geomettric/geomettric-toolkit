@@ -1,6 +1,6 @@
-# GmtScriptsCombine
+# GtkScriptsCombine
 
-> The **GmtScriptsCombine** class provides an easy way to load and combine (and minify using the JShrink class) 
+> The **GtkScriptsCombine** class provides an easy way to load and combine (and minify using the JShrink class) 
 multiple scripts or stylesheets into a single file that will be automatically included in the page header/footer of 
 your website. This class provides a great way for theme developers, and not only, to limit the number of http requests
  in order to load a bunch of scripts and stylesheets required by a theme.
@@ -10,7 +10,7 @@ your website. This class provides a great way for theme developers, and not only
 <table>
   <tr>
     <td>Class</td>
-    <td>GmtScriptsCombine</td>
+    <td>GtkScriptsCombine</td>
   </tr>
   <tr>
     <td>Version</td>
@@ -33,7 +33,7 @@ your website. This class provides a great way for theme developers, and not only
     /*
      * Instantiate the class
      */
-    $wpksc = new GmtScriptsCombine();
+    $wpksc = new GtkScriptsCombine();
 ```
 
 Afterwards, you can use the instance of the class, now stored in the **$wpksc** variable to combine and enqueue scripts:
@@ -100,7 +100,7 @@ To combine stylesheets:
 
 ## Methods
 
-### **GmtScriptsCombine::__construct( $minify = true )**
+### **GtkScriptsCombine::__construct( $minify = true )**
 <table>
   <tr>
     <td>$minify</td>
@@ -116,7 +116,7 @@ If the PHP version is less than 5.4 then the minify process will not run, regard
 
 
 
-### **GmtScriptsCombine::combineJS(array $files, $id, array $dependencies = array(), $baseDirPath = null, $inFooter = false)**
+### **GtkScriptsCombine::combineJS(array $files, $id, array $dependencies = array(), $baseDirPath = null, $inFooter = false)**
 <table>
   <tr>
     <td>$files</td>
@@ -140,7 +140,7 @@ If the PHP version is less than 5.4 then the minify process will not run, regard
   </tr>
 </table>
 
-### **GmtScriptsCombine::combineCSS(array $files, $id, array $dependencies = array(), $baseDirPath = null)**
+### **GtkScriptsCombine::combineCSS(array $files, $id, array $dependencies = array(), $baseDirPath = null)**
 <table>
   <tr>
     <td>$files</td>
@@ -160,6 +160,6 @@ If the PHP version is less than 5.4 then the minify process will not run, regard
   </tr>
 </table>
 
-### **GmtScriptsCombine::clearCache()**
+### **GtkScriptsCombine::clearCache()**
 Use this method to delete all cached files from the **cache** directory.
 

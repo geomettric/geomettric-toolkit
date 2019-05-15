@@ -10,7 +10,7 @@
  * @author Geomettric Themes
  * @author uri http://geomettric.com
  */
-class GmtPluginShortcode_GalleryGridImage extends GmtShortcodeAbstract
+class GtkPluginShortcode_GalleryGridImage extends GtkShortcodeAbstract
 {
 	private $_xValidPos = array(
 		'left', 'center', 'right'

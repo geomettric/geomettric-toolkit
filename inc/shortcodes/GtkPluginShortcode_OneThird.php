@@ -3,39 +3,38 @@
 }
 
 /**
- * Shortcode for Row
+ * Shortcode for Column one_third
  *
  * @package WordPress
  * @subpackage Shortcodes
  * @author Geomettric Themes
  * @author uri http://geomettric.com
  */
-class GmtPluginShortcode_Row extends GmtShortcodeAbstract
+class GtkPluginShortcode_OneThird extends GtkShortcodeAbstract
 {
 	public function getShortcodeName()
 	{
-		return 'row';
+		return 'one_third';
 	}
 
 	public function getDisplayName()
 	{
-		return '[Geomettric] Row';
+		return '[Geomettric] One Third';
 	}
 
-	// The shortcode's default attributes
 	public function getAtts()
 	{
 		return array();
 	}
 
-	public function html( $_atts = null, $content = '' )
+	public function html( $_atts, $content = '' )
 	{
-		$str = '';
+		$str = '<div class="col-sm-4">';
 		if ( ! empty( $content ) ) {
-			$str = '<div class="row">';
 			$str .= do_shortcode( $content );
-			$str .= '</div>';
 		}
+		$str .= '</div>';
+
 		return $str;
 	}
 }

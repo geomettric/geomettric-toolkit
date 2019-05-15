@@ -3,23 +3,23 @@
 }
 
 /**
- * Shortcode for Column one_third
+ * Shortcode for Column one_half
  *
  * @package WordPress
  * @subpackage Shortcodes
  * @author Geomettric Themes
  * @author uri http://geomettric.com
  */
-class GmtPluginShortcode_OneThird extends GmtShortcodeAbstract
+class GtkPluginShortcode_OneHalf extends GtkShortcodeAbstract
 {
 	public function getShortcodeName()
 	{
-		return 'one_third';
+		return 'one_half';
 	}
 
 	public function getDisplayName()
 	{
-		return '[Geomettric] One Third';
+		return '[Geomettric] One Half';
 	}
 
 	public function getAtts()
@@ -29,7 +29,7 @@ class GmtPluginShortcode_OneThird extends GmtShortcodeAbstract
 
 	public function html( $_atts, $content = '' )
 	{
-		$str = '<div class="col-sm-4">';
+		$str = '<div class="col-sm-6">';
 		if ( ! empty( $content ) ) {
 			$str .= do_shortcode( $content );
 		}

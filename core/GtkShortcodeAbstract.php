@@ -3,13 +3,13 @@
 }
 
 /**
- * Class GmtShortcodeAbstract
+ * Class GtkShortcodeAbstract
  *
  * This is the base class for all shortcodes
  *
  * @abstract
  */
-abstract class GmtShortcodeAbstract
+abstract class GtkShortcodeAbstract
 {
 	abstract function getShortcodeName();
 	abstract function getDisplayName();

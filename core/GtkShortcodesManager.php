@@ -12,7 +12,7 @@
  * @author Geomettric Themes
  * @author uri http://geomettric.com
  */
-class GmtShortcodesManager
+class GtkShortcodesManager
 {
 	private static $_instance = null;
 
@@ -103,10 +103,10 @@ class GmtShortcodesManager
 		}
 
 		/**
-		 * @var GmtShortcodeAbstract $shClass
+		 * @var GtkShortcodeAbstract $shClass
 		 */
 		$shClass = new $className;
-		if ( $shClass instanceof GmtShortcodeAbstract ) {
+		if ( $shClass instanceof GtkShortcodeAbstract ) {
 			$shName = $shClass->getShortcodeName();
 
 			//#! Skip, if the shortcode was already loaded

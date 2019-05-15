@@ -10,16 +10,16 @@
  * @author Geomettric Themes
  * @author uri http://geomettric.com
  */
-class GmtPluginShortcode_TwoThird extends GmtShortcodeAbstract
+class GtkPluginShortcode_Twelve extends GtkShortcodeAbstract
 {
 	public function getShortcodeName()
 	{
-		return 'two_third';
+		return 'twelve';
 	}
 
 	public function getDisplayName()
 	{
-		return '[Geomettric] Two Third';
+		return '[Geomettric] Twelve';
 	}
 
 	public function getAtts()
@@ -29,7 +29,7 @@ class GmtPluginShortcode_TwoThird extends GmtShortcodeAbstract
 
 	public function html( $_atts, $content = '' )
 	{
-		$str = '<div class="col-sm-8">';
+		$str = '<div class="col-sm-12">';
 		if ( ! empty( $content ) ) {
 			$str .= do_shortcode( $content );
 		}

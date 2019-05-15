@@ -10,7 +10,7 @@
  * @author Geomettric Themes
  * @author uri http://geomettric.com
  */
-class GmtPluginShortcode_Button extends GmtShortcodeAbstract
+class GtkPluginShortcode_Button extends GtkShortcodeAbstract
 {
 	public function getShortcodeName()
 	{

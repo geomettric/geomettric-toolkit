@@ -6,7 +6,7 @@
 
 
 /**
- * Class GmtScriptsCombine
+ * Class GtkScriptsCombine
  *
  * Provides an easy way to load and combine (and minify using the JShrink class) multiple scripts or stylesheets into a
  * single file that will be automatically included in the website.
@@ -18,7 +18,7 @@
  * @uses        \JSHrink\Minifier
  * @see         https://github.com/tedious/JShrink
  */
-class GmtScriptsCombine
+class GtkScriptsCombine
 {
 	/**
 	 * Indicates whether or not the '.js' file extension should be used for the output cache file

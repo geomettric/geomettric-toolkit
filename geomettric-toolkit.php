@@ -8,23 +8,22 @@
  * Text Domain: geomettric-toolkit
  * Domain Path: /languages
  */
-define( 'GMT_THEME_PLUGIN', true );
+define( 'GTK_THEME_PLUGIN', true );
 
-define( 'GMT_PLUGIN_DIR', trailingslashit( wp_normalize_path( plugin_dir_path( __FILE__ ) ) ) );
-define( 'GMT_PLUGIN_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
+define( 'GTK_PLUGIN_DIR', trailingslashit( wp_normalize_path( plugin_dir_path( __FILE__ ) ) ) );
+define( 'GTK_PLUGIN_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
 //#! Register the text domain
-function gmt_loadPluginTextDomain()
+function gtk_loadPluginTextDomain()
 {
 	load_plugin_textdomain( 'geomettric-toolkit', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
+add_action( 'plugins_loaded', 'gtk_loadPluginTextDomain' );
 
-add_action( 'plugins_loaded', 'gmt_loadPluginTextDomain' );
 
-
-//#! Load core files so others can use them
-require_once( GMT_PLUGIN_DIR . 'core/GmtUtil.php');
-require_once( GMT_PLUGIN_DIR . 'core/GmtAddonAbstract.php');
-require_once( GMT_PLUGIN_DIR . 'core/GmtShortcodeAbstract.php');
-require_once( GMT_PLUGIN_DIR . 'core/GmtShortcodesManager.php');
-require_once( GMT_PLUGIN_DIR . 'core/addons/scripts-combine/GmtScriptsCombine.php');
+//#! Load core files so others(themes|plugins) can use them
+require_once( GTK_PLUGIN_DIR . 'core/GtkUtil.php' );
+require_once( GTK_PLUGIN_DIR . 'core/GtkAddonAbstract.php' );
+require_once( GTK_PLUGIN_DIR . 'core/GtkShortcodeAbstract.php' );
+require_once( GTK_PLUGIN_DIR . 'core/GtkShortcodesManager.php' );
+require_once( GTK_PLUGIN_DIR . 'core/addons/scripts-combine/GtkScriptsCombine.php' );

@@ -3,11 +3,11 @@
 }
 
 /**
- * Class GmtUtil
+ * Class GtkUtil
  *
  * Utility class providing helper methods
  */
-class GmtUtil
+class GtkUtil
 {
 	/**
 	 * Add support for shortcodes in the Text widget

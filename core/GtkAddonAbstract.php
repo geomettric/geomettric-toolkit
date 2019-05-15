@@ -3,13 +3,13 @@
 }
 
 /**
- * Class GmtAddon
+ * Class GtkAddon
  *
  * THis is the base class for all add-ons
  *
  * @abstract
  */
-abstract class GmtAddonAbstract
+abstract class GtkAddonAbstract
 {
 
 }

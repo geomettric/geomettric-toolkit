@@ -5,7 +5,7 @@
 /**
  * Shortcode for Separator
  */
-class GmtPluginShortcode_Separator extends GmtShortcodeAbstract
+class GtkPluginShortcode_Separator extends GtkShortcodeAbstract
 {
 	public function getShortcodeName()
 	{

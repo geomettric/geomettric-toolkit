@@ -3,23 +3,23 @@
 }
 
 /**
- * Shortcode for Column one_sixth
+ * Shortcode for Column three_fourth
  *
  * @package WordPress
  * @subpackage Shortcodes
  * @author Geomettric Themes
  * @author uri http://geomettric.com
  */
-class GmtPluginShortcode_OneSixth extends GmtShortcodeAbstract
+class GtkPluginShortcode_ThreeFourth extends GtkShortcodeAbstract
 {
 	public function getShortcodeName()
 	{
-		return 'one_sixth';
+		return 'three_fourth';
 	}
 
 	public function getDisplayName()
 	{
-		return '[Geomettric] One Sixth';
+		return '[Geomettric] Three Fourth';
 	}
 
 	public function getAtts()
@@ -29,7 +29,7 @@ class GmtPluginShortcode_OneSixth extends GmtShortcodeAbstract
 
 	public function html( $_atts, $content = '' )
 	{
-		$str = '<div class="col-sm-2">';
+		$str = '<div class="col-sm-9">';
 		if ( ! empty( $content ) ) {
 			$str .= do_shortcode( $content );
 		}
