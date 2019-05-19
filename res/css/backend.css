@@ -1,0 +1,9 @@
+/* Backend styles */
+
+.toUpper {
+	text-transform: uppercase;
+}
+
+.apiServer {}
+.apiServerUp{ color: #090;}
+.apiServerDown{ color: #c00;}
