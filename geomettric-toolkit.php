@@ -14,23 +14,30 @@ define( 'GTK_TOOLKIT_PLUGIN_SLUG', 'geomettric_toolkit' );
 define( 'GTK_PLUGIN_DIR', trailingslashit( wp_normalize_path( plugin_dir_path( __FILE__ ) ) ) );
 define( 'GTK_PLUGIN_URI', trailingslashit( plugin_dir_url( __FILE__ ) ) );
 
+//#!
+define( 'GTK_NONCE_NAME', 'gtk_security' );
+define( 'GTK_NONCE_ACTION', 'gtk_ajax_action' );
 
-
-define('GTK_API_SERVER_URL', 'http://localhost/themeforest/api-server');
-define('GTK_API_SERVER_STATUS_UP', 'up');
-define('GTK_API_SERVER_STATUS_DOWN', 'down');
+//#! API
+define( 'GTK_API_SERVER_URL', 'http://localhost/themeforest/api-server' );
+define( 'GTK_API_SERVER_STATUS_UP', 'up' );
+define( 'GTK_API_SERVER_STATUS_DOWN', 'down' );
 // transient
-define('GTK_API_SERVER_STATUS_OPTION', 'gtk_api_server_status');
+define( 'GTK_API_SERVER_STATUS_OPTION', 'gtk_api_server_status' );
 //#! Holds the website's status info: connected/not connected, etc
-define('GTK_API_WEBSITE_INFO_OPTION', 'gtk_api_website_info');
+define( 'GTK_API_WEBSITE_INFO_OPTION', 'gtk_api_website_info' );
 
 //#! Load core files so others(themes|plugins) can use them
 require_once( GTK_PLUGIN_DIR . 'core/GtkUtil.php' );
 require_once( GTK_PLUGIN_DIR . 'core/GtkApi.php' );
+require_once( GTK_PLUGIN_DIR . 'core/GtkApiHelper.php' );
 require_once( GTK_PLUGIN_DIR . 'core/GtkAddonAbstract.php' );
 require_once( GTK_PLUGIN_DIR . 'core/GtkShortcodeAbstract.php' );
 require_once( GTK_PLUGIN_DIR . 'core/GtkShortcodesManager.php' );
+require_once( GTK_PLUGIN_DIR . 'core/GtkAjaxSearch.php' );
 require_once( GTK_PLUGIN_DIR . 'core/addons/scripts-combine/GtkScriptsCombine.php' );
+
+GtkApi::init();
 
 
 //#! Register the text domain
@@ -56,8 +63,9 @@ function gtk_enqueueScriptsBackend()
 	wp_enqueue_style( 'gtk-plugin-styles', GTK_PLUGIN_URI . 'res/css/shared.css' );
 }
 
-add_action('admin_init', 'gtk_apiServer_checkStatus');
-function gtk_apiServer_checkStatus() {
+add_action( 'admin_init', 'gtk_apiServer_checkStatus' );
+function gtk_apiServer_checkStatus()
+{
 	//#! Check the API server status
 	GtkApi::healthCheck();
 }
@@ -93,4 +101,9 @@ function gtk_adminMenu_renderPageSettings()
 	require_once( GTK_PLUGIN_DIR . 'admin/pages/settings.php' );
 }
 
+/*
+ * TODO: ADD CUSTOMIZER OPTION TO ENABLE/DISABLE/CUSTOMIZE STYLE
+ * TODO: ADD OPTION TO SEARCH IN: BLOG, WOOCOMMERCE, BOTH
+ */
+GtkAjaxSearch::init();
 

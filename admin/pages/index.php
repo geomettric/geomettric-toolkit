@@ -25,6 +25,7 @@ $err = $apiServerInfo['error'];
 		</p>
 	</div>
 
+	<a href="<?php echo esc_attr(GtkApi::getApiRegisterUrl());?>" target="_blank">Login/Register</a>
 
 	<p>Render statistics like: connected to API server, add button to refresh/check status, how many add-ons installed,
 	   if there are any new add-ons (check response from api server), etc..</p>

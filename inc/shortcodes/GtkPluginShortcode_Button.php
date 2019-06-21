@@ -91,8 +91,8 @@ class GtkPluginShortcode_Button extends GtkShortcodeAbstract
 			$content = esc_html( __( 'Button', 'geomettric-toolkit' ) );
 		}
 
-		$content = trim( $content );
-		$cssClass = trim( "{$style} {$shape} {$size} {$block}" );
+		$content = $content;
+		$cssClass = "{$style} {$shape} {$size} {$block}";
 
 
 		return '<a href="' . esc_url( $url ) . '" class="btn ' . esc_attr( $cssClass ) . '" title="' . esc_attr( $content ) . '" target="' . esc_attr( $target ) . '">' . $content . '</a>';

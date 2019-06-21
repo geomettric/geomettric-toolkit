@@ -53,8 +53,8 @@ class GtkPluginShortcode_GalleryGridImage extends GtkShortcodeAbstract
 		$id = (int)$atts['id'];
 		$width = (int)$atts['width'];
 		$height = (int)$atts['height'];
-		$xPos = trim( $atts['x'] );
-		$yPos = trim( $atts['y'] );
+		$xPos = $atts['x'];
+		$yPos = $atts['y'];
 
 		if ( empty( $id ) ) {
 			// nothing to do in this case - Image ID not provided

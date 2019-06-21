@@ -23,7 +23,7 @@ class GtkUtil
 	 */
 	public static function enhanceJpegQuality()
 	{
-		add_filter( 'jpeg_quality', array( __CLASS__, '__enhanceJpegQuality' ) );
+		add_filter( 'jpeg_quality', [ __CLASS__, '__enhanceJpegQuality' ] );
 	}
 
 	/**
@@ -42,21 +42,80 @@ class GtkUtil
 	 */
 	public static function removeQueryStringFromStaticResources()
 	{
-		add_filter( 'style_loader_src', array( __CLASS__, '__removeQueryStringFromStaticResources' ), 10, 2 );
-		add_filter( 'script_loader_src', array( __CLASS__, '__removeQueryStringFromStaticResources' ), 10, 2 );
+		add_filter( 'style_loader_src', [ __CLASS__, '__removeQueryStringFromStaticResources' ], 10, 2 );
+		add_filter( 'script_loader_src', [ __CLASS__, '__removeQueryStringFromStaticResources' ], 10, 2 );
 	}
 
 	/**
 	 * Remove the query string from static resources for a page load speed boost.
 	 * @internal
+	 *
 	 * @param string $src
+	 *
 	 * @return string
 	 */
-	function __removeQueryStringFromStaticResources( $src = '' )
+	public static function __removeQueryStringFromStaticResources( $src = '' )
 	{
 		if ( strpos( $src, '?ver=' ) ) {
 			$src = remove_query_arg( 'ver', $src );
 		}
 		return $src;
 	}
+
+	/**
+	 * Retrieve the IP address
+	 * @return string
+	 */
+	public static function getUserIpAddr()
+	{
+		if ( ! empty( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+			//ip from share internet
+			$ip = $_SERVER['HTTP_CLIENT_IP'];
+		}
+		elseif ( ! empty( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+			//ip pass from proxy
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}
+		else {
+			$ip = ( isset( $_SERVER['REMOTE_ADDR'] ) ? $_SERVER['REMOTE_ADDR'] : '0.0.0.0' );
+		}
+		return $ip;
+	}
+
+	/**
+	 * Render the post thumbnail
+	 *
+	 * @param string $imageSize
+	 * @param int|0 $postID
+	 */
+	public static function render_post_thumbnail( $imageSize, $postID = 0 )
+	{
+		if ( post_password_required() || is_attachment() ) {
+			return;
+		}
+		// Get the post ID
+		if ( empty( $postID ) ) {
+			$postID = get_the_ID();
+		}
+		if ( $postID && has_post_thumbnail( $postID ) ) {
+			$thumbID = get_post_thumbnail_id( $postID );
+			$post = get_post( $thumbID );
+			$thumbTitle = ( $post && isset( $post->post_title ) ? esc_attr( $post->post_title ) : '' );
+			?>
+			<a class="post-thumbnail" href="<?php the_permalink( $postID ); ?>" aria-hidden="true">
+				<?php echo wp_get_attachment_image( $thumbID, $imageSize, false, [
+					'alt' => self::getAttachmentAltText( $thumbID ),
+					'title' => $thumbTitle,
+				] );
+				?>
+			</a>
+			<?php
+		}
+	}
+
+	public static function getAttachmentAltText( $imageID )
+	{
+		return get_post_meta( $imageID, '_wp_attachment_image_alt', true );
+	}
+
 }
