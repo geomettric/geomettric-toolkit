@@ -68,6 +68,7 @@ class GtkAjaxSearch
 	 */
 	public static function loadAjaxJS()
 	{
+		wp_enqueue_style( 'gtk-ajax-search-styles', GTK_PLUGIN_URI . 'res/css/ajax-search.css');
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'gtk-ajax-search-init', GTK_PLUGIN_URI . 'res/js/ajax-search-init.js', [ 'jquery' ] );
 		wp_localize_script( 'gtk-ajax-search-init', 'GtkAjaxSearchLocale', [
