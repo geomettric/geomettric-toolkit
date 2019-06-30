@@ -23,6 +23,7 @@ class GtkAjaxSearch
 		if ( 'enabled-from-customizer' ) {
 			add_action( 'wp_enqueue_scripts', [ __CLASS__, 'loadAjaxJS' ] );
 			add_action( 'wp_ajax_gtk_ajax_search', [ get_class(), 'ajaxSearch' ] );
+			add_action( 'wp_ajax_nopriv_gtk_ajax_search', [ get_class(), 'ajaxSearch' ] );
 		}
 	}
 
