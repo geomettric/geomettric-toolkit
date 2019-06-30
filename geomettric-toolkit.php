@@ -101,6 +101,16 @@ function gtk_adminMenu_renderPageSettings()
 	require_once( GTK_PLUGIN_DIR . 'admin/pages/settings.php' );
 }
 
+
+/*
+ * Add image sizes
+ */
+add_action( 'after_setup_theme', 'gtk_image_sizes' );
+function gtk_image_sizes()
+{
+	add_image_size( 'gtk-search-thumbnail', 300, 300 );
+}
+
 /*
  * TODO: ADD CUSTOMIZER OPTION TO ENABLE/DISABLE/CUSTOMIZE STYLE
  * TODO: ADD OPTION TO SEARCH IN: BLOG, WOOCOMMERCE, BOTH

@@ -66,7 +66,7 @@ class GtkAjaxSearch
 	 */
 	public static function loadAjaxJS()
 	{
-		wp_enqueue_style( 'gtk-ajax-search-styles', GTK_PLUGIN_URI . 'res/css/ajax-search.css');
+		wp_enqueue_style( 'gtk-ajax-search-styles', GTK_PLUGIN_URI . 'res/css/ajax-search.css' );
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'gtk-ajax-search-init', GTK_PLUGIN_URI . 'res/js/ajax-search-init.js', [ 'jquery' ] );
 		wp_localize_script( 'gtk-ajax-search-init', 'GtkAjaxSearchLocale', [
@@ -84,7 +84,6 @@ class GtkAjaxSearch
 			],
 		] );
 	}
-
 
 
 	/**
@@ -124,14 +123,16 @@ class GtkAjaxSearch
 					$postTitle = $row->post_title;
 					?>
 					<div class="gtk-search__item">
-						<?php
-						//#! Image
-						echo '<div class="gtk-search__item-image"';
-						GtkUtil::render_post_thumbnail( 'thumbnail', $postID );
-						echo '</div>';
-						//#! Title
-						echo '<h2 class="gtk-search__item-title"><a href="' . esc_attr( get_permalink( $postID ) ) . '">' . $postTitle . '</a></h2>';
-						?>
+						<a href="<?php echo esc_attr( get_permalink( $postID ) ); ?>">
+							<?php
+							//#! Image
+							echo '<div class="gtk-search__item-image">';
+							GtkUtil::render_post_thumbnail( 'gtk-search-thumbnail', $postID );
+							echo '</div>';
+							//#! Title
+							echo '<h2 class="gtk-search__item-title">' . $postTitle . '</h2>';
+							?>
+						</a>
 					</div>
 					<?php
 				}

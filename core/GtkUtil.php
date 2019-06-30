@@ -91,7 +91,7 @@ class GtkUtil
 	 */
 	public static function render_post_thumbnail( $imageSize, $postID = 0, $linkImage = false )
 	{
-		if ( post_password_required() || is_attachment() ) {
+		if ( post_password_required( $postID ) || is_attachment() ) {
 			return;
 		}
 		// Get the post ID
