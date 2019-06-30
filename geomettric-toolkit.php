@@ -118,3 +118,7 @@ function gtk_image_sizes()
  */
 GtkAjaxSearch::init();
 
+/*
+ * Load widgets
+ */
+require_once( GTK_PLUGIN_DIR . 'inc/wp/widgets/Gtk_WC_SortBy.php' );
