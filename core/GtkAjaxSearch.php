@@ -113,33 +113,77 @@ class GtkAjaxSearch
 			//#! TODO: Check the option where to search: blog, woocommerce, both....
 			global $wpdb;
 
+			//#! TODO: SET IN CUSTOMIZER
+			$searchIn = 'product'; // 'post', 'product'
+
+			//!#--------------
 			//#! Query for all posts
-			$query = sprintf( "SELECT ID, post_title FROM {$wpdb->posts} WHERE post_type = 'post' AND post_status = 'publish' AND post_password = '' AND (post_title LIKE '%%%s%%' OR post_content LIKE '%%%s%%') LIMIT 0,4", $searchTerm, $searchTerm );
+			$query = sprintf( "SELECT ID, post_title FROM {$wpdb->posts} WHERE post_type = '%s' AND post_status = 'publish' AND post_password = '' AND (post_title LIKE '%%%s%%' OR post_content LIKE '%%%s%%') LIMIT 0,4", $searchIn, $searchTerm, $searchTerm );
 
 			$results = $wpdb->get_results( $query );
 			if ( $results ) {
 				ob_start();
+				if ( 'product' == $searchIn ) {
+					echo '<ul class="products columns-4">';
+				}
 				foreach ( $results as $row ) {
 					$postID = $row->ID;
 					$postTitle = $row->post_title;
-					?>
-					<div class="gtk-search-item">
-						<a href="<?php echo esc_attr( get_permalink( $postID ) ); ?>">
+					if ( 'post' == $searchIn ) {
+						?>
+						<div class="gtk-search-item">
+							<a href="<?php echo esc_attr( get_permalink( $postID ) ); ?>"></a>
 							<?php
 							//#! Image
 							echo '<div class="gtk-search-item__image">';
-							GtkUtil::render_post_thumbnail( 'gtk-search-thumbnail', $postID );
+							GtkUtil::render_post_thumbnail( 'gtk-search-post-thumbnail', $postID );
 							echo '</div>';
 							//#! Title
 							echo '<h2 class="gtk-search-item__title">' . $postTitle . '</h2>';
 							?>
-						</a>
-					</div>
-					<?php
+						</div>
+						<?php
+					}
+					elseif ( 'product' == $searchIn ) {
+						$product = new WC_Product( $postID );
+						$hptc = ( has_post_thumbnail( $postID ) ? 'has-post-thumbnail' : '' );
+						$ptc = 'product-type-' . $product->get_type();
+						?>
+						<li class="product type-product post-<?php echo esc_attr( $postID ); ?> <?php echo esc_attr( $hptc ); ?> <?php echo esc_attr( $ptc ); ?> ">
+							<div class="product__layout">
+								<a class="product__link" href="<?php echo esc_attr( get_permalink( $postID ) ); ?>"></a>
+								<?php
+								if ( has_post_thumbnail( $postID ) ) {
+									?>
+									<div class="product__image">
+										<div class="product__image-holder">
+											<?php echo get_the_post_thumbnail( $postID, 'gtk-search-product-thumbnail' ); ?>
+										</div>
+									</div>
+									<?php
+								}
+								?>
+								<div class="product__content">
+									<h2 class="woocommerce-loop-product__title"><?php echo get_the_title( $postID ); ?></h2>
+									<?php echo $product->get_price_html();?>
+								</div>
+							</div>
+						</li>
+						<?php
+					}
+				}
+				if ( 'product' == $searchIn ) {
+					echo '</ul>';
 				}
 				$html = ob_get_contents();
 				ob_end_clean();
-				$output['html'] = '<div class="gtk-ajas-search-results__list">' . $html. '</div><div class="gtk-ajax-search-results__more"><a href="' . get_bloginfo( 'url' ) . '?s=' . esc_attr( $searchTerm ) . '">' . esc_html__( 'View all', 'geomettric-toolkit' ) . '</a></div>';
+
+				if ( 'post' == $searchIn ) {
+					$output['html'] = '<div class="gtk-ajax-search-results__list">' . $html . '</div><div class="gtk-ajax-search-results__more"><a href="' . get_bloginfo( 'url' ) . '?s=' . esc_attr( $searchTerm ) . '&post_type=post">' . esc_html__( 'View all', 'geomettric-toolkit' ) . '</a></div>';
+				}
+				elseif ( 'product' == $searchIn ) {
+					$output['html'] = '<div class="gtk-ajax-search-results__list">' . $html . '</div><div class="gtk-ajax-search-results__more"><a href="' . get_bloginfo( 'url' ) . '?s=' . esc_attr( $searchTerm ) . '&post_type=product">' . esc_html__( 'View all', 'geomettric-toolkit' ) . '</a></div>';}
+
 				$output['count'] = count( $results );
 				wp_send_json_success( $output );
 			}

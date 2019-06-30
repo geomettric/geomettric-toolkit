@@ -108,7 +108,8 @@ function gtk_adminMenu_renderPageSettings()
 add_action( 'after_setup_theme', 'gtk_image_sizes' );
 function gtk_image_sizes()
 {
-	add_image_size( 'gtk-search-thumbnail', 300, 300 );
+	add_image_size( 'gtk-search-post-thumbnail', 300, 300 );
+	add_image_size( 'gtk-search-product-thumbnail', 300, 400 );
 }
 
 /*
