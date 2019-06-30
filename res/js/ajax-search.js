@@ -7,7 +7,7 @@ jQuery(function ($) {
 	$('.js-search-trigger').on('click', function (e) {
 		e.preventDefault();
 		e.stopPropagation();
-		var overlay = $('.bx-search');
+		var overlay = $('.gtk-search');
 		if (typeof (overlay) !== 'undefined') {
 			overlay.removeClass('u-hidden');
 

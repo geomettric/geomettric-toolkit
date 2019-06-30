@@ -23,15 +23,15 @@ jQuery(function ($) {
 		_prevSearchTerm: '',
 
 		init: function () {
-			this._searchResultsDiv = $('.bx-search-results');
-			this._searchCountWrap = $('.bx-search-results__top');
-			this._searchResultsWrap = $('.bx-search-results__wrapper');
-			this._searchNoticesWrap = $('.bx-search-results__notices');
+			this._searchResultsDiv = $('.gtk-search-results');
+			this._searchCountWrap = $('.gtk-search-results__top');
+			this._searchResultsWrap = $('.gtk-search-results__wrapper');
+			this._searchNoticesWrap = $('.gtk-search-results__notices');
 			this.__setupListeners()
 		},
 		__setupListeners: function () {
 			var $this = this;
-			$('.bx-search .bx-search-form__input').on('keyup', function (e) {
+			$('.gtk-search .gtk-search-form__input').on('keyup', function (e) {
 				var searchInput = $(this),
 					searchText = searchInput.val().trim();
 
