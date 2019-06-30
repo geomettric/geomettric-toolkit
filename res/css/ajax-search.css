@@ -1,21 +1,3 @@
-.gtk-search {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    z-index: 1;
-}
-
-.gtk-search__close {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-}
-
-.gtk-search__layout {
-    padding-top: 100px;
-}
-
 .gtk-search .bx-search-form__input {
     font-size: 25px;
     height: 100px;
@@ -34,11 +16,11 @@
     font-size: 16px;
 }
 
-.gtk-search-results {
+.gtk-ajax-search {
     padding-top: 50px;
 }
 
-.gtk-search-results.is-loading::after {
+.gtk-ajax-search.is-loading::after {
     content: "";
     width: 14px;
     height: 14px;

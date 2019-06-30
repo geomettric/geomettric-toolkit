@@ -27,17 +27,17 @@ jQuery(function ($) {
 
 			//#! Inject markup
 			var searchContentWrap = $('.bx-search__layout .container');
-			searchContentWrap.append('<div class="gtk-search-results">\n' +
-									 '\t<div class="gtk-search-results__top"><!-- Renders the results number --></div>\n' +
-									 '\t<div class="gtk-search-results__wrapper"><!-- Render the results --></div>\n' +
-									 '\t<div class="gtk-search-results__notices"><!-- <p>Render notices</p> --></div>\n' +
+			searchContentWrap.append('<div class="gtk-ajax-search">\n' +
+									 '\t<div class="gtk-ajax-search__top"><!-- Renders the results number --></div>\n' +
+									 '\t<div class="gtk-ajax-search__wrapper"><!-- Render the results --></div>\n' +
+									 '\t<div class="gtk-ajax-search__notices"><!-- <p>Render notices</p> --></div>\n' +
 									 '</div>');
 
 			//#! Setup references
-			this._searchResultsDiv = $('.gtk-search-results');
-			this._searchCountWrap = $('.gtk-search-results__top');
-			this._searchResultsWrap = $('.gtk-search-results__wrapper');
-			this._searchNoticesWrap = $('.gtk-search-results__notices');
+			this._searchResultsDiv = $('.gtk-ajax-search');
+			this._searchCountWrap = $('.gtk-ajax-search__top');
+			this._searchResultsWrap = $('.gtk-ajax-search__wrapper');
+			this._searchNoticesWrap = $('.gtk-ajax-search__notices');
 			this.__setupListeners()
 		},
 		__setupListeners: function () {
