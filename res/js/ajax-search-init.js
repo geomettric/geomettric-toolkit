@@ -103,4 +103,9 @@ jQuery(function ($) {
 
 	AjaxSearch.init();
 
+	//#! Triggered right after the search overlay is closed
+	$(document).on('bx-search-overlay-closed', function () {
+		$('.gtk-ajax-search-results').html('');
+		$('.gtk-ajax-search-notices').html('');
+	});
 });
