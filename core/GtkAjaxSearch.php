@@ -93,20 +93,20 @@ class GtkAjaxSearch
 	{
 		?>
 		<!-- Search -->
-		<div class="bx-search u-hidden">
-			<a href="#" class="bx-search__close ui-btn-icon ui-btn-icon--lg js-close-search" title="<?php esc_attr_e( 'Close', 'geomettric-toolkit' ); ?>">
+		<div class="gtk-search u-hidden">
+			<a href="#" class="gtk-search__close ui-btn-icon ui-btn-icon--lg js-close-search" title="<?php esc_attr_e( 'Close', 'geomettric-toolkit' ); ?>">
 				<span class="icon-close"></span>
 			</a>
-			<div class="bx-search__layout">
+			<div class="gtk-search__layout">
 				<div class="container">
 
 					<?php get_search_form(); ?>
 
 					<!-- min 3 chars -->
-					<div class="bx-search-results">
-						<div class="bx-search-results__top"><!-- Renders the results number --></div>
-						<div class="bx-search-results__wrapper"><!-- Render the results --></div>
-						<div class="bx-search-results__notices"><!-- <p>Render notices</p> --></div>
+					<div class="gtk-search-results">
+						<div class="gtk-search-results__top"><!-- Renders the results number --></div>
+						<div class="gtk-search-results__wrapper"><!-- Render the results --></div>
+						<div class="gtk-search-results__notices"><!-- <p>Render notices</p> --></div>
 					</div>
 				</div>
 			</div>
@@ -152,20 +152,21 @@ class GtkAjaxSearch
 					$postID = $row->ID;
 					$postTitle = $row->post_title;
 					?>
-					<div class="item">
+					<div class="gtk-search__item">
 						<?php
 						//#! Image
+						echo '<div class="gtk-search__item-image"';
 						GtkUtil::render_post_thumbnail( 'thumbnail', $postID );
-
+						echo '</div>';
 						//#! Title
-						echo '<h3><a href="' . esc_attr( get_permalink( $postID ) ) . '">' . $postTitle . '</a></h3>';
+						echo '<h2 class="gtk-search__item-title"><a href="' . esc_attr( get_permalink( $postID ) ) . '">' . $postTitle . '</a></h2>';
 						?>
 					</div>
 					<?php
 				}
 				$html = ob_get_contents();
 				ob_end_clean();
-				$output['html'] = '<div class="search-results-wrap">' . $html . '</div><div><a href="' . get_bloginfo( 'url' ) . '?s=' . esc_attr( $searchTerm ) . '">' . esc_html__( 'View all', 'geomettric-toolkit' ) . '</a></div>';
+				$output['html'] = '<div class="gtk-search__list columns--4">' . $html . '</div><div><a href="' . get_bloginfo( 'url' ) . '?s=' . esc_attr( $searchTerm ) . '">' . esc_html__( 'View all', 'geomettric-toolkit' ) . '</a></div>';
 				$output['count'] = count( $results );
 				wp_send_json_success( $output );
 			}

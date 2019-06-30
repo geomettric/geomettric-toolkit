@@ -87,8 +87,9 @@ class GtkUtil
 	 *
 	 * @param string $imageSize
 	 * @param int|0 $postID
+	 * @param bool $linkImage
 	 */
-	public static function render_post_thumbnail( $imageSize, $postID = 0 )
+	public static function render_post_thumbnail( $imageSize, $postID = 0, $linkImage = false )
 	{
 		if ( post_password_required() || is_attachment() ) {
 			return;
@@ -101,15 +102,17 @@ class GtkUtil
 			$thumbID = get_post_thumbnail_id( $postID );
 			$post = get_post( $thumbID );
 			$thumbTitle = ( $post && isset( $post->post_title ) ? esc_attr( $post->post_title ) : '' );
-			?>
-			<a class="post-thumbnail" href="<?php the_permalink( $postID ); ?>" aria-hidden="true">
-				<?php echo wp_get_attachment_image( $thumbID, $imageSize, false, [
-					'alt' => self::getAttachmentAltText( $thumbID ),
-					'title' => $thumbTitle,
-				] );
-				?>
-			</a>
-			<?php
+
+			if ( $linkImage ) {
+				echo '<a href="' . esc_attr( get_permalink( $postID ) ) . '" class="gtk-post-thumbnail" aria-hidden="true">';
+			}
+			echo wp_get_attachment_image( $thumbID, $imageSize, false, [
+				'alt' => self::getAttachmentAltText( $thumbID ),
+				'title' => $thumbTitle,
+			] );
+			if ( $linkImage ) {
+				echo '</a>';
+			}
 		}
 	}
 
