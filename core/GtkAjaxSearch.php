@@ -115,6 +115,7 @@ class GtkAjaxSearch
 
 			//#! Query for all post types
 			$query = sprintf( "SELECT ID, post_title FROM {$wpdb->posts} WHERE post_status = 'publish' AND post_password = '' AND (post_title LIKE '%%%s%%' OR post_content LIKE '%%%s%%') LIMIT 0,4", $searchTerm, $searchTerm );
+
 			$results = $wpdb->get_results( $query );
 			if ( $results ) {
 				ob_start();

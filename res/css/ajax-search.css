@@ -60,11 +60,20 @@
     position: relative;
     padding-left: 15px;
     padding-right: 15px;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+.gtk-search-item__image {
+    margin-bottom: 15px;
+}
+
+.gtk-search-item__image img {
+    display: block;
 }
 
 .gtk-search-item__title {
     font-size: 17px;
+    margin: 0;
 }
 
 .gtk-ajax-search-results__more {
