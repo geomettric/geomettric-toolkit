@@ -23,14 +23,14 @@ jQuery(function ($) {
 			//#! Inject markup
 			var searchContentWrap = $('.bx-search__layout .container');
 			searchContentWrap.append('<div class="gtk-ajax-search">\n' +
-									 '\t<div class="gtk-ajax-search__wrapper"><!-- Render the results --></div>\n' +
-									 '\t<div class="gtk-ajax-search__notices"><!-- <p>Render notices</p> --></div>\n' +
+									 '\t<div class="gtk-ajax-search-results"><!-- Render the results --></div>\n' +
+									 '\t<div class="gtk-ajax-search-notices"><!-- <p>Render notices</p> --></div>\n' +
 									 '</div>');
 
 			//#! Setup references
 			this._searchResultsDiv = $('.gtk-ajax-search');
-			this._searchResultsWrap = $('.gtk-ajax-search__wrapper');
-			this._searchNoticesWrap = $('.gtk-ajax-search__notices');
+			this._searchResultsWrap = $('.gtk-ajax-search-results');
+			this._searchNoticesWrap = $('.gtk-ajax-search-notices');
 			this.__setupListeners()
 		},
 		__setupListeners: function () {

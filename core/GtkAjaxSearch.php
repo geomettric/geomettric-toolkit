@@ -137,7 +137,7 @@ class GtkAjaxSearch
 				}
 				$html = ob_get_contents();
 				ob_end_clean();
-				$output['html'] = '<div class="gtk-search__list columns--4">' . $html . '</div><div><a href="' . get_bloginfo( 'url' ) . '?s=' . esc_attr( $searchTerm ) . '">' . esc_html__( 'View all', 'geomettric-toolkit' ) . '</a></div>';
+				$output['html'] = $html . '<div><a href="' . get_bloginfo( 'url' ) . '?s=' . esc_attr( $searchTerm ) . '">' . esc_html__( 'View all', 'geomettric-toolkit' ) . '</a></div>';
 				$output['count'] = count( $results );
 				wp_send_json_success( $output );
 			}
