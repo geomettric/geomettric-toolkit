@@ -17,7 +17,6 @@ class GtkAjaxSearch
 		add_filter( 'brixton/site-header/icons', [ __CLASS__, 'addLabelIcon' ], 20 );
 		add_filter( 'brixton/nav-drawer/icons', [ __CLASS__, 'addLabelIcon' ], 20 );
 
-		add_action( 'wp_body_open', [ __CLASS__, 'injectMarkup' ] );
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'loadFrontendScripts' ] );
 
 		if ( 'enabled-from-customizer' ) {
@@ -60,7 +59,6 @@ class GtkAjaxSearch
 	public static function loadFrontendScripts()
 	{
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'gtk-ajax-search', GTK_PLUGIN_URI . 'res/js/ajax-search.js', [ 'jquery' ] );
 	}
 
 	/**
@@ -87,35 +85,7 @@ class GtkAjaxSearch
 		] );
 	}
 
-	/**
-	 * Inject the markup for the search overlay
-	 */
-	public static function injectMarkup()
-	{
-		?>
-		<!-- Search -->
-		<div class="gtk-search u-hidden">
-			<a href="#" class="gtk-search__close ui-btn-icon ui-btn-icon--lg js-close-search" title="<?php esc_attr_e( 'Close', 'geomettric-toolkit' ); ?>">
-				<span class="icon-close"></span>
-			</a>
-			<div class="gtk-search__layout">
-				<div class="container">
 
-					<?php get_search_form(); ?>
-
-					<!-- min 3 chars -->
-					<div class="gtk-search-results">
-						<div class="gtk-search-results__top"><!-- Renders the results number --></div>
-						<div class="gtk-search-results__wrapper"><!-- Render the results --></div>
-						<div class="gtk-search-results__notices"><!-- <p>Render notices</p> --></div>
-					</div>
-				</div>
-			</div>
-			<?php wp_nonce_field( GTK_NONCE_ACTION, GTK_NONCE_NAME ); ?>
-		</div>
-		<!-- #end Search -->
-		<?php
-	}
 
 	/**
 	 * Respond to ajax request

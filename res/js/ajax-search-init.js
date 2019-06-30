@@ -23,6 +23,17 @@ jQuery(function ($) {
 		_prevSearchTerm: '',
 
 		init: function () {
+
+
+			//#! Inject markup
+			var searchContentWrap = $('.bx-search__layout .container');
+			searchContentWrap.append('<div class="gtk-search-results">\n' +
+									 '\t<div class="gtk-search-results__top"><!-- Renders the results number --></div>\n' +
+									 '\t<div class="gtk-search-results__wrapper"><!-- Render the results --></div>\n' +
+									 '\t<div class="gtk-search-results__notices"><!-- <p>Render notices</p> --></div>\n' +
+									 '</div>');
+
+			//#! Setup references
 			this._searchResultsDiv = $('.gtk-search-results');
 			this._searchCountWrap = $('.gtk-search-results__top');
 			this._searchResultsWrap = $('.gtk-search-results__wrapper');
@@ -31,12 +42,12 @@ jQuery(function ($) {
 		},
 		__setupListeners: function () {
 			var $this = this;
-			$('.gtk-search .gtk-search-form__input').on('keyup', function (e) {
+			$('.bx-search .bx-search-form__input').on('keyup', function (e) {
 				var searchInput = $(this),
 					searchText = searchInput.val().trim();
 
 				if (searchText.length >= 3) {
-					console.info(searchText);
+					//#! debounce
 					window.setTimeout(function () {
 						if (!$this._prevSearchTerm || searchText !== $this._prevSearchTerm) {
 							$this._prevSearchTerm = searchText
