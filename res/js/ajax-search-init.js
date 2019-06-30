@@ -7,16 +7,11 @@ jQuery(function ($) {
 	//#! Must be localized
 	var locale = (typeof (window.GtkAjaxSearchLocale) !== 'undefined' ? window.GtkAjaxSearchLocale : null);
 	if (!locale) {
-		throw new Error("The .. locale not found.");
+		throw new Error("The window.GtkAjaxSearchLocale locale not found.");
 	}
-
-
-	// todo
-
 
 	var AjaxSearch = {
 		_searchResultsDiv: null,
-		_searchCountWrap: null,
 		_searchResultsWrap: null,
 		_searchNoticesWrap: null,
 		_isRunning: false,
@@ -28,14 +23,12 @@ jQuery(function ($) {
 			//#! Inject markup
 			var searchContentWrap = $('.bx-search__layout .container');
 			searchContentWrap.append('<div class="gtk-ajax-search">\n' +
-									 '\t<div class="gtk-ajax-search__top"><!-- Renders the results number --></div>\n' +
 									 '\t<div class="gtk-ajax-search__wrapper"><!-- Render the results --></div>\n' +
 									 '\t<div class="gtk-ajax-search__notices"><!-- <p>Render notices</p> --></div>\n' +
 									 '</div>');
 
 			//#! Setup references
 			this._searchResultsDiv = $('.gtk-ajax-search');
-			this._searchCountWrap = $('.gtk-ajax-search__top');
 			this._searchResultsWrap = $('.gtk-ajax-search__wrapper');
 			this._searchNoticesWrap = $('.gtk-ajax-search__notices');
 			this.__setupListeners()
@@ -64,7 +57,6 @@ jQuery(function ($) {
 
 			$this._isRunning = true;
 			$this._searchNoticesWrap.html('');
-			$this._searchCountWrap.html('');
 			$this._searchResultsWrap.html('');
 			$this._searchResultsDiv.addClass('is-loading');
 
@@ -86,24 +78,20 @@ jQuery(function ($) {
 				.done(function (r) {
 					if (!r) {
 						$this._searchNoticesWrap.html('<p>' + locale.ajax.text.no_response + '</p>');
-						$this._searchCountWrap.html('');
 						$this._searchResultsWrap.html('');
 					}
 					else if (!r.success) {
 						var message = (r.data ? r.data : locale.ajax.text.no_results);
 						$this._searchNoticesWrap.html('<p>' + message + '</p>');
-						$this._searchCountWrap.html('');
 						$this._searchResultsWrap.html('');
 					}
 					else {
 						$this._searchNoticesWrap.html('');
-						$this._searchCountWrap.html(locale.ajax.text.results_count + '' + r.data.count);
 						$this._searchResultsWrap.html(r.data.html);
 					}
 				})
 				.fail(function (x, s, e) {
 					$this._searchNoticesWrap.html('<p>' + e + '</p>');
-					$this._searchCountWrap.html('');
 					$this._searchResultsWrap.html('');
 				})
 				.done(function () {
